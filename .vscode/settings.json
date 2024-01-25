@@ -2,5 +2,6 @@
     "emmet.includeLanguages": {
         "html-eex": "html",
         "elixir": "html"
-    }
+    },
+    "editor.formatOnSave": true
 }
