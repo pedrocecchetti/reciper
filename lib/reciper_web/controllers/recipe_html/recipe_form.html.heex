@@ -1,0 +1,14 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:name]} type="text" label="Name" />
+  <.input field={f[:preparing_time_minutes]} type="number" label="Preparing time minutes" />
+  <.input field={f[:portions]} type="number" label="Portions" />
+  <.input field={f[:vegan]} type="checkbox" label="Vegan" />
+  <.input field={f[:vegetarian]} type="checkbox" label="Vegetarian" />
+  <.input field={f[:one_pot_recipe]} type="checkbox" label="One pot recipe" />
+  <:actions>
+    <.button>Save Recipe</.button>
+  </:actions>
+</.simple_form>

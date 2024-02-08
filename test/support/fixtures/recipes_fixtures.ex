@@ -18,4 +18,23 @@ defmodule Reciper.RecipesFixtures do
 
     ingredient
   end
+
+  @doc """
+  Generate a recipe.
+  """
+  def recipe_fixture(attrs \\ %{}) do
+    {:ok, recipe} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        one_pot_recipe: true,
+        portions: 42,
+        preparing_time_minutes: 42,
+        vegan: true,
+        vegetarian: true
+      })
+      |> Reciper.Recipes.create_recipe()
+
+    recipe
+  end
 end
