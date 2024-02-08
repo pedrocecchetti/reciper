@@ -1,20 +1,32 @@
 <.header>
   Recipe <%= @recipe.id %>
-  <:subtitle>This is a recipe record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/recipes/#{@recipe}/edit"}>
-      <.button>Edit recipe</.button>
-    </.link>
-  </:actions>
+    <:subtitle>This is a recipe record from your database.</:subtitle>
+    <:actions>
+      <.link href={~p"/recipes/#{@recipe}/edit"}>
+        <.button>Edit recipe</.button>
+      </.link>
+    </:actions>
 </.header>
 
 <.list>
-  <:item title="Name"><%= @recipe.name %></:item>
-  <:item title="Preparing time minutes"><%= @recipe.preparing_time_minutes %></:item>
-  <:item title="Portions"><%= @recipe.portions %></:item>
-  <:item title="Vegan"><%= @recipe.vegan %></:item>
-  <:item title="Vegetarian"><%= @recipe.vegetarian %></:item>
-  <:item title="One pot recipe"><%= @recipe.one_pot_recipe %></:item>
+  <:item title="Name">
+    <%= @recipe.name %>
+  </:item>
+  <:item title="Preparing time minutes">
+    <%= @recipe.preparing_time_minutes %>
+  </:item>
+  <:item title="Portions">
+    <%= @recipe.portions %>
+  </:item>
+  <:item title="Vegan">
+    <%= @recipe.vegan %>
+  </:item>
+  <:item title="Vegetarian">
+    <%= @recipe.vegetarian %>
+  </:item>
+  <:item title="One pot recipe">
+    <%= @recipe.one_pot_recipe %>
+  </:item>
 </.list>
 
 <.back navigate={~p"/recipes"}>Back to recipes</.back>

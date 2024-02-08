@@ -4,11 +4,11 @@
   </.error>
   <.input field={f[:name]} type="text" label="Name" />
   <.input field={f[:preparing_time_minutes]} type="number" label="Preparing time minutes" />
-  <.input field={f[:portions]} type="number" label="Portions" />
-  <.input field={f[:vegan]} type="checkbox" label="Vegan" />
-  <.input field={f[:vegetarian]} type="checkbox" label="Vegetarian" />
-  <.input field={f[:one_pot_recipe]} type="checkbox" label="One pot recipe" />
+  <.input field={f[:portions]} type="number" label="Portions" class="w-6/12" />
+  <.input field={f[:vegan]} type="checkbox" label="Vegan" class="w-6/12" />
+  <.input field={f[:vegetarian]} type="checkbox" label="Vegetarian" class="w-6/12" />
+  <.input field={f[:one_pot_recipe]} type="checkbox" label="One pot recipe" class="w-6/12" />
   <:actions>
-    <.button>Save Recipe</.button>
+    <.button class="bg-teal-700">Save Recipe</.button>
   </:actions>
 </.simple_form>
