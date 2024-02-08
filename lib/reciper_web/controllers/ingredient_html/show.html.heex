@@ -1,0 +1,16 @@
+<.header>
+  Ingredient <%= @ingredient.id %>
+  <:subtitle>This is a ingredient record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/ingredients/#{@ingredient}/edit"}>
+      <.button>Edit ingredient</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @ingredient.name %></:item>
+  <:item title="Category"><%= @ingredient.category %></:item>
+</.list>
+
+<.back navigate={~p"/ingredients"}>Back to ingredients</.back>

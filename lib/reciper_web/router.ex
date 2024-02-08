@@ -18,6 +18,7 @@ defmodule ReciperWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/ingredients", IngredientController
   end
 
   # Other scopes may use custom stacks.
