@@ -43,7 +43,7 @@ defmodule ReciperWeb.IngredientControllerTest do
 
     test "renders form for editing chosen ingredient", %{conn: conn, ingredient: ingredient} do
       conn = get(conn, ~p"/ingredients/#{ingredient}/edit")
-      assert html_response(conn, 200) =~ "Edit Ingredient"
+      assert html_response(conn, 200) =~ "Edit:"
     end
   end
 
@@ -60,7 +60,7 @@ defmodule ReciperWeb.IngredientControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn, ingredient: ingredient} do
       conn = put(conn, ~p"/ingredients/#{ingredient}", ingredient: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Edit Ingredient"
+      assert html_response(conn, 200) =~ "Edit:"
     end
   end
 

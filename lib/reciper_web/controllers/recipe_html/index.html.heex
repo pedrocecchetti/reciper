@@ -31,10 +31,11 @@
       <div class="sr-only">
         <.link navigate={~p"/recipes/#{recipe}"}>Show</.link>
       </div>
-      <.link navigate={~p"/recipes/#{recipe}/edit"}>Edit</.link>
+      <.link navigate={~p"/recipes/#{recipe}/edit"} class="bg-teal-600 rounded-lg px-5 py-3">Edit</.link>
     </:action>
     <:action :let={recipe}>
-      <.link href={~p"/recipes/#{recipe}"} method="delete" data-confirm="Are you sure?">
+      <.link href={~p"/recipes/#{recipe}"} method="delete" class="bg-rose-500 rounded-lg p-3"
+        data-confirm="Are you sure?">
         Delete
       </.link>
     </:action>

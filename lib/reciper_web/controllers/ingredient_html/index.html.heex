@@ -1,4 +1,4 @@
-<.header>
+<.header class="text-center items-center p-12 w-9/12 m-auto">
   Listing Ingredients
   <:actions>
     <.link href={~p"/ingredients/new"}>
@@ -6,19 +6,25 @@
     </.link>
   </:actions>
 </.header>
-
-<.table id="ingredients" rows={@ingredients} row_click={&JS.navigate(~p"/ingredients/#{&1}")}>
-  <:col :let={ingredient} label="Name"><%= ingredient.name %></:col>
-  <:col :let={ingredient} label="Category"><%= ingredient.category %></:col>
-  <:action :let={ingredient}>
-    <div class="sr-only">
-      <.link navigate={~p"/ingredients/#{ingredient}"}>Show</.link>
-    </div>
-    <.link navigate={~p"/ingredients/#{ingredient}/edit"}>Edit</.link>
-  </:action>
-  <:action :let={ingredient}>
-    <.link href={~p"/ingredients/#{ingredient}"} method="delete" data-confirm="Are you sure?">
-      Delete
-    </.link>
-  </:action>
-</.table>
+<div class="w-9/12 border-2 shadow-2xl rounded-lg p-12 items-center m-auto">
+  <.table id="ingredients" rows={@ingredients} row_click={&JS.navigate(~p"/ingredients/#{&1}")}>
+    <:col :let={ingredient} label="Name">
+      <%= ingredient.name %>
+    </:col>
+    <:col :let={ingredient} label="Category">
+      <%= ingredient.category %>
+    </:col>
+    <:action :let={ingredient}>
+      <div class="sr-only">
+        <.link navigate={~p"/ingredients/#{ingredient}"}>Show</.link>
+      </div>
+      <.link navigate={~p"/ingredients/#{ingredient}/edit"} class="bg-teal-600 rounded-lg px-5 py-3">Edit</.link>
+    </:action>
+    <:action :let={ingredient}>
+      <.link href={~p"/ingredients/#{ingredient}"} method="delete" data-confirm="Are you sure?"
+        class="bg-rose-500 rounded-lg p-3">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</div>

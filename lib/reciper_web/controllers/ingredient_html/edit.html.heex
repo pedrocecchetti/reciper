@@ -1,6 +1,6 @@
-<.header>
-  Edit Ingredient <%= @ingredient.id %>
-  <:subtitle>Use this form to manage ingredient records in your database.</:subtitle>
+<.header class="text-center m-10">
+  Edit: <%= @ingredient.name %>
+    <:subtitle>Use this form to manage ingredient records in your database.</:subtitle>
 </.header>
 
 <.ingredient_form changeset={@changeset} action={~p"/ingredients/#{@ingredient}"} />
