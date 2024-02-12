@@ -15,9 +15,12 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FA2A55",
-        brandFont: "#FCF2E3"
+        brandFont: "#FCF2E3",
+      },
+      backgroundImage: {
+        'catShow': "url('/images/food.png')",
       }
-    },
+    }
   },
   plugins: [
     require("@tailwindcss/forms"),

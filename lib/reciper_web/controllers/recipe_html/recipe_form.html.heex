@@ -1,14 +1,19 @@
-<.simple_form :let={f} for={@changeset} action={@action}>
-  <.error :if={@changeset.action}>
-    Oops, something went wrong! Please check the errors below.
-  </.error>
-  <.input field={f[:name]} type="text" label="Name" />
-  <.input field={f[:preparing_time_minutes]} type="number" label="Preparing time minutes" />
-  <.input field={f[:portions]} type="number" label="Portions" class="w-6/12" />
-  <.input field={f[:vegan]} type="checkbox" label="Vegan" class="w-6/12" />
-  <.input field={f[:vegetarian]} type="checkbox" label="Vegetarian" class="w-6/12" />
-  <.input field={f[:one_pot_recipe]} type="checkbox" label="One pot recipe" class="w-6/12" />
-  <:actions>
-    <.button class="bg-teal-700">Save Recipe</.button>
-  </:actions>
-</.simple_form>
+<div class="w-4/12 border-2 shadow-2xl rounded-lg p-12 items-center m-auto overflow-hidden">
+  <.simple_form :let={f} for={@changeset} action={@action}>
+    <.error :if={@changeset.action}>
+      Oops, something went wrong! Please check the errors below.
+    </.error>
+    <div class="">
+      <.input field={f[:name]} type="text" label="Name" class="bg-red-500" />
+      <.input field={f[:preparing_time_minutes]} type="number" label="Preparing time minutes" class="w-6/12" />
+      <.input field={f[:portions]} type="number" label="Portions" class="w-6/12" />
+      <.input field={f[:vegan]} type="checkbox" label="Vegan" class="w-6/12" />
+      <.input field={f[:vegetarian]} type="checkbox" label="Vegetarian" class="w-6/12" />
+      <.input field={f[:one_pot_recipe]} type="checkbox" label="One pot recipe" class="w-6/12" />
+
+    </div>
+    <:actions>
+      <.button class="bg-teal-700">Save Recipe</.button>
+    </:actions>
+  </.simple_form>
+</div>

@@ -1,11 +1,13 @@
-<.simple_form :let={f} for={@changeset} action={@action}>
-  <.error :if={@changeset.action}>
-    Oops, something went wrong! Please check the errors below.
-  </.error>
-  <.input field={f[:name]} type="text" label="Name" class="w-6/12" />
-  <.input field={f[:category]} type="select" label="Category" prompt="Choose a value"
-    options={Ecto.Enum.values(Reciper.Recipes.Ingredient, :category)} class="w-2" />
-  <:actions>
-    <.button>Save Ingredient</.button>
-  </:actions>
-</.simple_form>
+<div class="w-4/12 border-2 shadow-2xl rounded-lg p-12 items-center m-auto">
+  <.simple_form :let={f} for={@changeset} action={@action}>
+    <.error :if={@changeset.action}>
+      Oops, something went wrong! Please check the errors below.
+    </.error>
+    <.input field={f[:name]} type="text" label="Name" class="w-6/12" />
+    <.input field={f[:category]} type="select" label="Category" prompt="Choose a value"
+      options={Ecto.Enum.values(Reciper.Recipes.Ingredient, :category)} />
+    <:actions>
+      <.button>Save Ingredient</.button>
+    </:actions>
+  </.simple_form>
+</div>

@@ -1,9 +1,16 @@
-<div>
-  <.flash_group flash={@flash} />
-  <div class={"bg-[url(#{~p</images/cat.jpg>})] w-full"}>
-    <div class="bg-cover items-center text-center">
-      <h1 class="text-9xl py-20">Welcome to Reciper</h1>
-      <h2 class="text-3xl">Here you can find the real Recipes to help you!</h2>
+<div class=" h-full">
+  <div class="bg-catShow w-full p-0 bg-cover">
+    <.flash_group flash={@flash} />
+    <div class="bg-rose-300/80">
+      <div class="bg-cover items-center text-center h-3/6">
+        <h1 class="text-9xl py-20 text-slate-800 text-bo">Welcome to Reciper</h1>
+        <h2 class="text-3xl text-white ">Here you can find the real Recipes to help you!</h2>
+        <div class="p-20">
+          <.link navigate={~p"/recipes/new"} class="bg-rose-300 rounded-lg m-4 p-4 shadow-sm text-slate-700">Add new
+            Recipe
+          </.link>
+        </div>
+      </div>
     </div>
   </div>
 </div>

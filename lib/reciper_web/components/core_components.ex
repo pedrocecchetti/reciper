@@ -376,7 +376,7 @@ defmodule ReciperWeb.CoreComponents do
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 -full rofulld-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+          "my-4 w-10/12 justify-center  rofulld-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 rounded-lg",
           "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400"
