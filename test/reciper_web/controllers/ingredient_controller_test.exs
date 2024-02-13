@@ -5,7 +5,7 @@ defmodule ReciperWeb.IngredientControllerTest do
 
   @create_attrs %{name: "some name", category: :vegetable}
   @update_attrs %{name: "some updated name", category: :dairy}
-  @invalid_attrs %{name: nil, category: nil}
+  @invalid_attrs %{name: "a", category: "a"}
 
   describe "index" do
     test "lists all ingredients", %{conn: conn} do
@@ -55,7 +55,7 @@ defmodule ReciperWeb.IngredientControllerTest do
       assert redirected_to(conn) == ~p"/ingredients/#{ingredient}"
 
       conn = get(conn, ~p"/ingredients/#{ingredient}")
-      assert html_response(conn, 200) =~ "some updated name"
+      assert html_response(conn, 200) =~ "Some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, ingredient: ingredient} do

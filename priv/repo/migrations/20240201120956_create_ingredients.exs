@@ -8,5 +8,7 @@ defmodule Reciper.Repo.Migrations.CreateIngredients do
 
       timestamps(type: :utc_datetime)
     end
+
+    create unique_index(:ingredients, :name)
   end
 end

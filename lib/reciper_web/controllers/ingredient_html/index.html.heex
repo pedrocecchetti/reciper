@@ -12,7 +12,7 @@
       <%= ingredient.name %>
     </:col>
     <:col :let={ingredient} label="Category">
-      <%= ingredient.category %>
+      <%= String.capitalize(to_string(ingredient.category)) %>
     </:col>
     <:action :let={ingredient}>
       <div class="sr-only">

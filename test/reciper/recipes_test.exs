@@ -8,7 +8,7 @@ defmodule Reciper.RecipesTest do
 
     import Reciper.RecipesFixtures
 
-    @invalid_attrs %{name: nil, category: nil}
+    @invalid_attrs %{name: "a", category: "a"}
 
     test "list_ingredients/0 returns all ingredients" do
       ingredient = ingredient_fixture()
@@ -24,7 +24,7 @@ defmodule Reciper.RecipesTest do
       valid_attrs = %{name: "some name", category: :vegetable}
 
       assert {:ok, %Ingredient{} = ingredient} = Recipes.create_ingredient(valid_attrs)
-      assert ingredient.name == "some name"
+      assert ingredient.name == "Some name"
       assert ingredient.category == :vegetable
     end
 
@@ -36,8 +36,10 @@ defmodule Reciper.RecipesTest do
       ingredient = ingredient_fixture()
       update_attrs = %{name: "some updated name", category: :dairy}
 
-      assert {:ok, %Ingredient{} = ingredient} = Recipes.update_ingredient(ingredient, update_attrs)
-      assert ingredient.name == "some updated name"
+      assert {:ok, %Ingredient{} = ingredient} =
+               Recipes.update_ingredient(ingredient, update_attrs)
+
+      assert ingredient.name == "Some updated name"
       assert ingredient.category == :dairy
     end
 
@@ -64,7 +66,14 @@ defmodule Reciper.RecipesTest do
 
     import Reciper.RecipesFixtures
 
-    @invalid_attrs %{name: nil, preparing_time_minutes: nil, portions: nil, vegan: nil, vegetarian: nil, one_pot_recipe: nil}
+    @invalid_attrs %{
+      name: nil,
+      preparing_time_minutes: nil,
+      portions: nil,
+      vegan: nil,
+      vegetarian: nil,
+      one_pot_recipe: nil
+    }
 
     test "list_recipes/0 returns all recipes" do
       recipe = recipe_fixture()
@@ -77,7 +86,14 @@ defmodule Reciper.RecipesTest do
     end
 
     test "create_recipe/1 with valid data creates a recipe" do
-      valid_attrs = %{name: "some name", preparing_time_minutes: 42, portions: 42, vegan: true, vegetarian: true, one_pot_recipe: true}
+      valid_attrs = %{
+        name: "some name",
+        preparing_time_minutes: 42,
+        portions: 42,
+        vegan: true,
+        vegetarian: true,
+        one_pot_recipe: true
+      }
 
       assert {:ok, %Recipe{} = recipe} = Recipes.create_recipe(valid_attrs)
       assert recipe.name == "some name"
@@ -94,7 +110,15 @@ defmodule Reciper.RecipesTest do
 
     test "update_recipe/2 with valid data updates the recipe" do
       recipe = recipe_fixture()
-      update_attrs = %{name: "some updated name", preparing_time_minutes: 43, portions: 43, vegan: false, vegetarian: false, one_pot_recipe: false}
+
+      update_attrs = %{
+        name: "some updated name",
+        preparing_time_minutes: 43,
+        portions: 43,
+        vegan: false,
+        vegetarian: false,
+        one_pot_recipe: false
+      }
 
       assert {:ok, %Recipe{} = recipe} = Recipes.update_recipe(recipe, update_attrs)
       assert recipe.name == "some updated name"
