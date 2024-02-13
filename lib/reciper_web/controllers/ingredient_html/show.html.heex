@@ -1,16 +1,25 @@
-<.header>
-  Ingredient <%= @ingredient.id %>
-  <:subtitle>This is a ingredient record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/ingredients/#{@ingredient}/edit"}>
-      <.button>Edit ingredient</.button>
-    </.link>
-  </:actions>
-</.header>
+<div class="m-auto">
+  <.header class="text-center items-center p-12 w-9/12 m-auto">
+    Ingredient <%= @ingredient.id %>
+      <:subtitle>This is a ingredient record from your database.</:subtitle>
+      <:actions>
+        <.link href={~p"/ingredients/#{@ingredient}/edit"}>
+          <.button>Edit ingredient</.button>
+        </.link>
+      </:actions>
+  </.header>
 
-<.list>
-  <:item title="Name"><%= @ingredient.name %></:item>
-  <:item title="Category"><%= @ingredient.category %></:item>
-</.list>
+  <div class="w-9/12 m-auto p-12 shadow-lg rounded-lg shadow-slate-800">
+    <.list>
+      <:item title="Name">
+        <%= @ingredient.name %>
+      </:item>
+      <:item title="Category">
+        <%= @ingredient.category %>
+      </:item>
+    </.list>
 
-<.back navigate={~p"/ingredients"}>Back to ingredients</.back>
+    <.back navigate={~p"/ingredients"}>Back to ingredients</.back>
+  </div>
+
+</div>
