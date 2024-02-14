@@ -11,11 +11,16 @@
 
   <div class="w-9/12 m-auto p-12 shadow-lg rounded-lg shadow-slate-800">
     <.list>
-      <:item title="Measurement">
-        <%= @ingredient_quantity.measurement %>
+      <:item title="Igredient">
+        <%= @ingredient_quantity.ingredient.name %>
       </:item>
       <:item title="Quantity">
-        <%= @ingredient_quantity.quantity %>
+        <span>
+          <%= @ingredient_quantity.quantity %>
+        </span>
+        <span>
+          <%= @ingredient_quantity.measurement %>
+        </span>
       </:item>
     </.list>
   </div>

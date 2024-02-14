@@ -227,7 +227,8 @@ defmodule Reciper.Recipes do
       ** (Ecto.NoResultsError)
 
   """
-  def get_ingredient_quantity!(id), do: Repo.get!(IngredientQuantity, id)
+  def get_ingredient_quantity!(id),
+    do: Repo.get!(IngredientQuantity, id) |> Repo.preload([:ingredient])
 
   @doc """
   Creates a ingredient_quantity.
