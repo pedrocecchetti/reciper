@@ -4,6 +4,8 @@ defmodule Reciper.RecipesFixtures do
   entities via the `Reciper.Recipes` context.
   """
 
+  alias Reciper.Repo
+
   @doc """
   Generate a ingredient.
   """
@@ -42,14 +44,23 @@ defmodule Reciper.RecipesFixtures do
   Generate a ingredient_quantity.
   """
   def ingredient_quantity_fixture(attrs \\ %{}) do
+    {:ok, ingredient} =
+      attrs
+      |> Enum.into(%{
+        category: :vegetable,
+        name: "some name"
+      })
+      |> Reciper.Recipes.create_ingredient()
+
     {:ok, ingredient_quantity} =
       attrs
       |> Enum.into(%{
         measurement: :g,
-        quantity: 42
+        quantity: 42,
+        ingredient_id: ingredient.id
       })
       |> Reciper.Recipes.create_ingredient_quantity()
 
-    ingredient_quantity
+    Repo.preload(ingredient_quantity, :ingredient)
   end
 end

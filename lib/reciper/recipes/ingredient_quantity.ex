@@ -22,4 +22,13 @@ defmodule Reciper.Recipes.IngredientQuantity do
       message: "This ingredient quantity already exists! "
     )
   end
+
+  def update_changeset(ingredient_quantity, attrs) do
+    ingredient_quantity
+    |> cast(attrs, [:quantity, :measurement])
+    |> validate_required([:measurement, :quantity])
+    |> unique_constraint([:ingredient_id, :quantity, :measurement],
+      message: "This ingredient quantity already exists! "
+    )
+  end
 end

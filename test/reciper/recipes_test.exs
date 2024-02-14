@@ -165,13 +165,15 @@ defmodule Reciper.RecipesTest do
     end
 
     test "create_ingredient_quantity/1 with valid data creates a ingredient_quantity" do
-      valid_attrs = %{measurement: :g, quantity: 44}
+      {:ok, ingredient} = Recipes.create_ingredient(%{name: "cheese", category: :dairy})
+      valid_attrs = %{measurement: :ml, quantity: 202, ingredient_id: ingredient.id}
 
       assert {:ok, %IngredientQuantity{} = ingredient_quantity} =
                Recipes.create_ingredient_quantity(valid_attrs)
 
-      assert ingredient_quantity.measurement == :g
-      assert ingredient_quantity.quantity == 44
+      assert ingredient_quantity.measurement == :ml
+      assert ingredient_quantity.quantity == 202
+      assert ingredient_quantity.ingredient_id == ingredient.id
     end
 
     test "create_ingredient_quantity/1 with invalid data returns error changeset" do
@@ -210,7 +212,7 @@ defmodule Reciper.RecipesTest do
     end
 
     test "change_ingredient_quantity/1 returns a ingredient_quantity changeset" do
-      ingredient_quantity = ingredient_quantity_fixture(quantity: 144)
+      ingredient_quantity = ingredient_quantity_fixture(%{quantity: 12})
       assert %Ecto.Changeset{} = Recipes.change_ingredient_quantity(ingredient_quantity)
     end
   end

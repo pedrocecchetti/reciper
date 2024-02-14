@@ -292,6 +292,6 @@ defmodule Reciper.Recipes do
 
   """
   def change_ingredient_quantity(%IngredientQuantity{} = ingredient_quantity, attrs \\ %{}) do
-    IngredientQuantity.changeset(ingredient_quantity, attrs)
+    IngredientQuantity.update_changeset(ingredient_quantity, attrs)
   end
 end
