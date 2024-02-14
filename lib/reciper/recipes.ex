@@ -197,4 +197,100 @@ defmodule Reciper.Recipes do
   def change_recipe(%Recipe{} = recipe, attrs \\ %{}) do
     Recipe.changeset(recipe, attrs)
   end
+
+  alias Reciper.Recipes.IngredientQuantity
+
+  @doc """
+  Returns the list of ingredient_quantities.
+
+  ## Examples
+
+      iex> list_ingredient_quantities()
+      [%IngredientQuantity{}, ...]
+
+  """
+  def list_ingredient_quantities do
+    Repo.all(IngredientQuantity) |> Repo.preload([:ingredient])
+  end
+
+  @doc """
+  Gets a single ingredient_quantity.
+
+  Raises `Ecto.NoResultsError` if the Ingredient quantity does not exist.
+
+  ## Examples
+
+      iex> get_ingredient_quantity!(123)
+      %IngredientQuantity{}
+
+      iex> get_ingredient_quantity!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_ingredient_quantity!(id), do: Repo.get!(IngredientQuantity, id)
+
+  @doc """
+  Creates a ingredient_quantity.
+
+  ## Examples
+
+      iex> create_ingredient_quantity(%{field: value})
+      {:ok, %IngredientQuantity{}}
+
+      iex> create_ingredient_quantity(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_ingredient_quantity(attrs \\ %{}) do
+    %IngredientQuantity{}
+    |> IngredientQuantity.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a ingredient_quantity.
+
+  ## Examples
+
+      iex> update_ingredient_quantity(ingredient_quantity, %{field: new_value})
+      {:ok, %IngredientQuantity{}}
+
+      iex> update_ingredient_quantity(ingredient_quantity, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_ingredient_quantity(%IngredientQuantity{} = ingredient_quantity, attrs) do
+    ingredient_quantity
+    |> IngredientQuantity.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a ingredient_quantity.
+
+  ## Examples
+
+      iex> delete_ingredient_quantity(ingredient_quantity)
+      {:ok, %IngredientQuantity{}}
+
+      iex> delete_ingredient_quantity(ingredient_quantity)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_ingredient_quantity(%IngredientQuantity{} = ingredient_quantity) do
+    Repo.delete(ingredient_quantity)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking ingredient_quantity changes.
+
+  ## Examples
+
+      iex> change_ingredient_quantity(ingredient_quantity)
+      %Ecto.Changeset{data: %IngredientQuantity{}}
+
+  """
+  def change_ingredient_quantity(%IngredientQuantity{} = ingredient_quantity, attrs \\ %{}) do
+    IngredientQuantity.changeset(ingredient_quantity, attrs)
+  end
 end

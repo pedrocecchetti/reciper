@@ -1,0 +1,25 @@
+defmodule Reciper.Recipes.IngredientQuantity do
+  alias Reciper.Recipes.Ingredient
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "ingredient_quantities" do
+    field :measurement, Ecto.Enum, values: [:g, :kg, :l, :ml, :tbsp, :tsp, :cup, :dash]
+    field :quantity, :integer
+    field :ingredient_id, :id
+
+    has_one :ingredient, Ingredient, foreign_key: :id, references: :ingredient_id
+
+    timestamps(type: :utc_datetime)
+  end
+
+  @doc false
+  def changeset(ingredient_quantity, attrs) do
+    ingredient_quantity
+    |> cast(attrs, [:measurement, :quantity, :ingredient_id])
+    |> validate_required([:measurement, :quantity, :ingredient_id])
+    |> unique_constraint([:ingredient_id, :quantity, :measurement],
+      message: "This ingredient quantity already exists! "
+    )
+  end
+end

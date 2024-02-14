@@ -20,6 +20,7 @@ defmodule ReciperWeb.Router do
     get "/", PageController, :home
     resources "/ingredients", IngredientController
     resources "/recipes", RecipeController
+    resources "/ingredient_quantities", IngredientQuantityController
   end
 
   # Other scopes may use custom stacks.

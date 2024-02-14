@@ -1,0 +1,24 @@
+<div class="m-auto">
+  <.header class="text-center items-center p-12 w-9/12 m-auto">
+    Ingredient quantity <%= @ingredient_quantity.id %>
+      <:subtitle>This is a ingredient_quantity record from your database.</:subtitle>
+      <:actions>
+        <.link href={~p"/ingredient_quantities/#{@ingredient_quantity}/edit"}>
+          <.button>Edit ingredient_quantity</.button>
+        </.link>
+      </:actions>
+  </.header>
+
+  <div class="w-9/12 m-auto p-12 shadow-lg rounded-lg shadow-slate-800">
+    <.list>
+      <:item title="Measurement">
+        <%= @ingredient_quantity.measurement %>
+      </:item>
+      <:item title="Quantity">
+        <%= @ingredient_quantity.quantity %>
+      </:item>
+    </.list>
+  </div>
+
+  <.back navigate={~p"/ingredient_quantities"}>Back to ingredient_quantities</.back>
+</div>

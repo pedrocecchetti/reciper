@@ -1,0 +1,14 @@
+<div class="w-4/12 border-2 shadow-2xl rounded-lg p-12 items-center m-auto">
+  <.simple_form :let={f} for={@changeset} action={@action}>
+    <.error :if={@changeset.action}>
+      Oops, something went wrong! Please check the errors below.
+    </.error>
+    <.input field={f[:measurement]} type="select" label="Measurement" prompt="Choose a value"
+      options={Ecto.Enum.values(Reciper.Recipes.IngredientQuantity, :measurement)} />
+    <.input field={f[:quantity]} type="number" label="Quantity" />
+    <.input field={f[:ingredient_id]} type="number" label="Ingredient Id" />
+    <:actions>
+      <.button>Save Ingredient quantity</.button>
+    </:actions>
+  </.simple_form>
+</div>

@@ -146,4 +146,72 @@ defmodule Reciper.RecipesTest do
       assert %Ecto.Changeset{} = Recipes.change_recipe(recipe)
     end
   end
+
+  describe "ingredient_quantities" do
+    alias Reciper.Recipes.IngredientQuantity
+
+    import Reciper.RecipesFixtures
+
+    @invalid_attrs %{measurement: nil, quantity: nil}
+
+    test "list_ingredient_quantities/0 returns all ingredient_quantities" do
+      ingredient_quantity = ingredient_quantity_fixture(%{quantity: 12})
+      assert Recipes.list_ingredient_quantities() == [ingredient_quantity]
+    end
+
+    test "get_ingredient_quantity!/1 returns the ingredient_quantity with given id" do
+      ingredient_quantity = ingredient_quantity_fixture(%{quantity: 13})
+      assert Recipes.get_ingredient_quantity!(ingredient_quantity.id) == ingredient_quantity
+    end
+
+    test "create_ingredient_quantity/1 with valid data creates a ingredient_quantity" do
+      valid_attrs = %{measurement: :g, quantity: 44}
+
+      assert {:ok, %IngredientQuantity{} = ingredient_quantity} =
+               Recipes.create_ingredient_quantity(valid_attrs)
+
+      assert ingredient_quantity.measurement == :g
+      assert ingredient_quantity.quantity == 44
+    end
+
+    test "create_ingredient_quantity/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Recipes.create_ingredient_quantity(@invalid_attrs)
+    end
+
+    test "update_ingredient_quantity/2 with valid data updates the ingredient_quantity" do
+      ingredient_quantity = ingredient_quantity_fixture()
+      update_attrs = %{measurement: :kg, quantity: 43}
+
+      assert {:ok, %IngredientQuantity{} = ingredient_quantity} =
+               Recipes.update_ingredient_quantity(ingredient_quantity, update_attrs)
+
+      assert ingredient_quantity.measurement == :kg
+      assert ingredient_quantity.quantity == 43
+    end
+
+    test "update_ingredient_quantity/2 with invalid data returns error changeset" do
+      ingredient_quantity = ingredient_quantity_fixture(%{quantity: 99})
+
+      assert {:error, %Ecto.Changeset{}} =
+               Recipes.update_ingredient_quantity(ingredient_quantity, @invalid_attrs)
+
+      assert ingredient_quantity == Recipes.get_ingredient_quantity!(ingredient_quantity.id)
+    end
+
+    test "delete_ingredient_quantity/1 deletes the ingredient_quantity" do
+      ingredient_quantity = ingredient_quantity_fixture(%{quantity: 120})
+
+      assert {:ok, %IngredientQuantity{}} =
+               Recipes.delete_ingredient_quantity(ingredient_quantity)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Recipes.get_ingredient_quantity!(ingredient_quantity.id)
+      end
+    end
+
+    test "change_ingredient_quantity/1 returns a ingredient_quantity changeset" do
+      ingredient_quantity = ingredient_quantity_fixture(quantity: 144)
+      assert %Ecto.Changeset{} = Recipes.change_ingredient_quantity(ingredient_quantity)
+    end
+  end
 end

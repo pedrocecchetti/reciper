@@ -37,4 +37,19 @@ defmodule Reciper.RecipesFixtures do
 
     recipe
   end
+
+  @doc """
+  Generate a ingredient_quantity.
+  """
+  def ingredient_quantity_fixture(attrs \\ %{}) do
+    {:ok, ingredient_quantity} =
+      attrs
+      |> Enum.into(%{
+        measurement: :g,
+        quantity: 42
+      })
+      |> Reciper.Recipes.create_ingredient_quantity()
+
+    ingredient_quantity
+  end
 end
