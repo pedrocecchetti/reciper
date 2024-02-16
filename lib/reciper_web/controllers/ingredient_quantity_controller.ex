@@ -11,7 +11,11 @@ defmodule ReciperWeb.IngredientQuantityController do
 
   def new(conn, _params) do
     changeset = Recipes.change_ingredient_quantity(%IngredientQuantity{})
-    render(conn, :new, changeset: changeset)
+    ingredients = Recipes.list_ingredients()
+
+    conn
+    |> assign(:ingredients, ingredients)
+    |> render(:new, changeset: changeset)
   end
 
   def create(conn, %{"ingredient_quantity" => ingredient_quantity_params}) do
@@ -22,7 +26,8 @@ defmodule ReciperWeb.IngredientQuantityController do
         |> redirect(to: ~p"/ingredient_quantities/#{ingredient_quantity}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        ingredients = Recipes.list_ingredients()
+        render(conn, :new, changeset: changeset, ingredients: ingredients)
     end
   end
 

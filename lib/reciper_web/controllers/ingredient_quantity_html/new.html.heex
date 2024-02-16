@@ -3,6 +3,7 @@
   <:subtitle>Use this form to manage ingredient_quantity records in your database.</:subtitle>
 </.header>
 
-<.ingredient_quantity_form changeset={@changeset} action={~p"/ingredient_quantities"} />
+<.create_ingredient_quantity_form changeset={@changeset} action={~p"/ingredient_quantities"}
+  ingredients={@ingredients} />
 
 <.back navigate={~p"/ingredient_quantities"}>Back to ingredient_quantities</.back>
