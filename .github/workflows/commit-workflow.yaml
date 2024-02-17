@@ -1,4 +1,4 @@
-name: commit-workflow
+name: pr-workflow
 run-name: ${{ github.actor }} pushed a commit
 on: [pull_request]
 
