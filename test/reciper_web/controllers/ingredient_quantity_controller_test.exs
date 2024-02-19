@@ -19,6 +19,7 @@ defmodule ReciperWeb.IngredientQuantityControllerTest do
     test "renders form", %{conn: conn} do
       conn = get(conn, ~p"/ingredient_quantities/new")
       assert html_response(conn, 200) =~ "New Ingredient quantity"
+      assert is_list(conn.assigns.ingredients)
     end
   end
 
@@ -40,6 +41,7 @@ defmodule ReciperWeb.IngredientQuantityControllerTest do
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, ~p"/ingredient_quantities", ingredient_quantity: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Ingredient quantity"
+      assert is_list(conn.assigns.ingredients)
     end
   end
 
