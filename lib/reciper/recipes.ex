@@ -117,6 +117,18 @@ defmodule Reciper.Recipes do
     Repo.all(Recipe)
   end
 
+  @spec list_recipes_ny_name(any()) :: any()
+  def list_recipes_ny_name(name) do
+    like = "#{name}%"
+
+    if(like != "%") do
+      query = from i in Ingredient, where: ilike(i.name, ^like)
+      Repo.all(query)
+    else
+      []
+    end
+  end
+
   @doc """
   Gets a single recipe.
 

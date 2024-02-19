@@ -1,4 +1,5 @@
 defmodule Reciper.Recipes.IngredientQuantity do
+  alias Reciper.Recipes.Recipe
   alias Reciper.Recipes.Ingredient
   use Ecto.Schema
   import Ecto.Changeset
@@ -9,6 +10,7 @@ defmodule Reciper.Recipes.IngredientQuantity do
     field :ingredient_id, :id
 
     has_one :ingredient, Ingredient, foreign_key: :id, references: :ingredient_id
+    many_to_many :recipe, Recipe, join_through: :recipe_ingredient_quantity
 
     timestamps(type: :utc_datetime)
   end
