@@ -117,8 +117,8 @@ defmodule Reciper.Recipes do
     Repo.all(Recipe)
   end
 
-  @spec list_recipes_ny_name(any()) :: any()
-  def list_recipes_ny_name(name) do
+  @spec list_recipes_by_name(any()) :: any()
+  def list_recipes_by_name(name) do
     like = "#{name}%"
 
     if(like != "%") do
