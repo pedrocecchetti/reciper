@@ -43,7 +43,7 @@ defmodule ReciperWeb.RecipeCreationLive do
   end
 
   def handle_event(_event, %{"ingredient_name" => ingredient_name}, socket) do
-    ingredients = Recipes.list_recipes_ny_name(ingredient_name)
+    ingredients = Recipes.list_recipes_by_name(ingredient_name)
     IO.inspect(ingredients)
     {:noreply, assign(socket, :ingredients, ingredients)}
   end
