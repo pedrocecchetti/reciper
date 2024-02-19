@@ -1,4 +1,5 @@
 defmodule ReciperWeb.Router do
+  alias Reciper.Recipes.Recipe
   use ReciperWeb, :router
 
   pipeline :browser do
@@ -21,6 +22,8 @@ defmodule ReciperWeb.Router do
     resources "/ingredients", IngredientController
     resources "/recipes", RecipeController
     resources "/ingredient_quantities", IngredientQuantityController
+
+    live "/new_recipe", RecipeCreationLive
   end
 
   # Other scopes may use custom stacks.
