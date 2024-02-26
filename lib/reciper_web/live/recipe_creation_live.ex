@@ -4,7 +4,17 @@ defmodule ReciperWeb.RecipeCreationLive do
   #
   import ReciperWeb.CoreComponents
 
-  @measurement_units [{"g", :gramm}, {"l", :liter}]
+  @measurement_units [
+    {"g", :gramm},
+    {"l", :liter},
+    {"kg", :kg},
+    {"l", :l},
+    {"ml", :ml},
+    {"tbsp", :tbsp},
+    {"tsp", :tsp},
+    {"cup", :cup},
+    {"dash", :dash}
+  ]
 
   def render(assigns) do
     ~H"""
@@ -117,6 +127,14 @@ defmodule ReciperWeb.RecipeCreationLive do
 
   def handle_event("save", unsigned_params, socket) do
     IO.inspect(unsigned_params)
+
+    socket =
+      put_flash(
+        socket,
+        :error,
+        "WE ARE WORKING ON THIS FEATURE RIGHT NOW! DONT FUCK WITH US! THANKS"
+      )
+
     {:noreply, socket}
   end
 end
