@@ -18,7 +18,7 @@ defmodule ReciperWeb.RecipeController do
     case Recipes.create_recipe(recipe_params) do
       {:ok, recipe} ->
         conn
-        |> put_flash(:info, "Recipe created successfully.")
+        |> put_flash(:success, "Recipe created successfully.")
         |> redirect(to: ~p"/recipes/#{recipe}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -43,7 +43,7 @@ defmodule ReciperWeb.RecipeController do
     case Recipes.update_recipe(recipe, recipe_params) do
       {:ok, recipe} ->
         conn
-        |> put_flash(:info, "Recipe updated successfully.")
+        |> put_flash(:success, "Recipe updated successfully.")
         |> redirect(to: ~p"/recipes/#{recipe}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -56,7 +56,7 @@ defmodule ReciperWeb.RecipeController do
     {:ok, _recipe} = Recipes.delete_recipe(recipe)
 
     conn
-    |> put_flash(:info, "Recipe deleted successfully.")
+    |> put_flash(:success, "Recipe deleted successfully.")
     |> redirect(to: ~p"/recipes")
   end
 end
