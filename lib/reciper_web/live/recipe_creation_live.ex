@@ -8,9 +8,10 @@ defmodule ReciperWeb.RecipeCreationLive do
 
   def render(assigns) do
     ~H"""
-    <.simple_form phx-change="show" class="" key="2" for={%{}} phx-submit="save">
-      <.input phx-change="show" name="recipe_name" value="SHOW" label="Recipe name"></.input>
-      <.input name="recipe_time" type="number" value="" label="Recipe Time in Minutes"></.input>
+    <.flash_group flash={@flash} />
+    <.simple_form class="w-5/12 items-center m-auto" key="new_recipe" for={@form} phx-submit="save">
+      <.input name="recipe_name" value="" label="Recipe name"></.input>
+      <.input name="recipe_time" type="number" value="" label="Execution Time in Minutes"></.input>
       <.input name="recipe_portions" value="SHOW" label="Recipe Portions"></.input>
 
       <div class="w-6/12">
