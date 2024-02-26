@@ -43,17 +43,22 @@ defmodule ReciperWeb.RecipeCreationLive do
         </:col>
         <:col :let={ingredient} label="Category"><%= ingredient.category %></:col>
         <:col :let={ingredient} label="Quantity">
-          <.input type="number" name={"ingredient-#{ingredient.id}-quantity"} value="0"></.input>
+          <.input type="number" name={"ingredient_#{ingredient.id}_quantity"} value="0"></.input>
         </:col>
 
-        <:col :let={ingredient} label="Unit">
+        <:col :let={ingredient}>
           <.input
             type="select"
-            name={"ingredient-#{ingredient.id}-measurement"}
+            name={"ingredient_#{ingredient.id}_measurement"}
             options={@measurement_units}
             value=""
           >
           </.input>
+        </:col>
+        <:col :let={ingredient} label="Unit">
+          <.button phx-click="delete-row" value={ingredient.id}>
+            <.icon name="hero-trash-solid" />
+          </.button>
         </:col>
       </.table>
       <:actions>
@@ -72,24 +77,45 @@ defmodule ReciperWeb.RecipeCreationLive do
       |> assign(ingredients: ingredients)
       |> assign(selected_ingredients: selected_ingredients)
       |> assign(measurement_units: @measurement_units)
+      |> assign(:form, %{})
+      |> put_flash(
+        :info,
+        "Please add all ingredients before changing the quantities and measurement units"
+      )
 
     {:ok, socket}
   end
 
-  def handle_event(_event, %{"ingredient_name" => ingredient_name}, socket) do
+  def handle_event("search_ingredient", %{"ingredient_name" => ingredient_name}, socket) do
     ingredients = Recipes.list_recipes_by_name(ingredient_name)
     {:noreply, assign(socket, :ingredients, ingredients)}
   end
 
   def handle_event("select_ingredient", %{"value" => ingredient_id}, socket) do
     ingredient = Recipes.get_ingredient!(ingredient_id)
-    selected_ingredients = [ingredient | socket.assigns.selected_ingredients]
-    socket = assign(socket, selected_ingredients: selected_ingredients)
+
+    selected_igredients =
+      if Enum.member?(socket.assigns.selected_ingredients, ingredient) do
+        socket.assigns.selected_ingredients
+      else
+        [ingredient | socket.assigns.selected_ingredients]
+      end
+
+    socket = assign(socket, selected_ingredients: selected_igredients)
+    {:noreply, socket}
+  end
+
+  def handle_event("delete-row", %{"value" => value}, socket) do
+    selected_ingredients =
+      Enum.filter(socket.assigns.selected_ingredients, fn ingredient ->
+        ingredient.id != String.to_integer(value)
+      end)
+
+    socket = assign(socket, :selected_ingredients, selected_ingredients)
     {:noreply, socket}
   end
 
   def handle_event("save", unsigned_params, socket) do
-    IO.puts("SHHHOHOWHOHWOHWOHW")
     IO.inspect(unsigned_params)
     {:noreply, socket}
   end
