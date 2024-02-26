@@ -18,7 +18,7 @@ defmodule ReciperWeb.IngredientController do
     case Recipes.create_ingredient(ingredient_params) do
       {:ok, ingredient} ->
         conn
-        |> put_flash(:info, "Ingredient created successfully.")
+        |> put_flash(:success, "Ingredient created successfully.")
         |> redirect(to: ~p"/ingredients/#{ingredient}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -43,7 +43,7 @@ defmodule ReciperWeb.IngredientController do
     case Recipes.update_ingredient(ingredient, ingredient_params) do
       {:ok, ingredient} ->
         conn
-        |> put_flash(:info, "Ingredient updated successfully.")
+        |> put_flash(:success, "Ingredient updated successfully.")
         |> redirect(to: ~p"/ingredients/#{ingredient}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -56,7 +56,7 @@ defmodule ReciperWeb.IngredientController do
     {:ok, _ingredient} = Recipes.delete_ingredient(ingredient)
 
     conn
-    |> put_flash(:info, "Ingredient deleted successfully.")
+    |> put_flash(:success, "Ingredient deleted successfully.")
     |> redirect(to: ~p"/ingredients")
   end
 end
